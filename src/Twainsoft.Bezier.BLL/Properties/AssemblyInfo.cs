@@ -1,16 +1,14 @@
 ﻿using System.Reflection;
-<<<<<<< HEAD
-=======
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Twainsoft.Bezier")]
+[assembly: AssemblyTitle("Twainsoft.Bezier.BLL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Twainsoft.Bezier")]
+[assembly: AssemblyProduct("Twainsoft.Bezier.BLL")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2edb4f9f-534d-437e-a302-b33b7f119017")]
+[assembly: Guid("7990e100-ae15-4ff7-b405-30babdc815b3")]
 
 // Version information for an assembly consists of the following four values:
 //

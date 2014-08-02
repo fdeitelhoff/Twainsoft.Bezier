@@ -1,13 +1,6 @@
 ﻿using System;
-<<<<<<< HEAD
 using System.Windows.Forms;
 using Twainsoft.Bezier.GUI;
-=======
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
->>>>>>> c2967d79fbd7ea07666cb59e798110660dfeb685
 
 namespace Twainsoft.Bezier
 {
@@ -21,11 +14,7 @@ namespace Twainsoft.Bezier
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
-            Application.Run(new FrmMain());
-=======
-            Application.Run(new Form1());
->>>>>>> c2967d79fbd7ea07666cb59e798110660dfeb685
+            Application.Run(new MainForm());
         }
     }
 }
