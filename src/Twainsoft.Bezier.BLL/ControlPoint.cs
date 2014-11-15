@@ -1,10 +1,8 @@
-﻿#region Namespaces
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
-using System;
-
-#endregion
-
-namespace Twainsoft.FHSWF.Math.Bezier
+namespace Twainsoft.Bezier.BLL
 {
     public class ControlPoint : BezierPoint
     {
@@ -14,68 +12,66 @@ namespace Twainsoft.FHSWF.Math.Bezier
         public bool IsMoving { get; set; }
         public bool IsHovering { get; set; }
 
-        public ControlPoint() { }
-
         public ControlPoint(int number, Point point) : base(point)
         {
-            this.Number = number;
+            Number = number;
 
-            this.CreateMoveRectangle();
+            CreateMoveRectangle();
         }
 
         private void CreateMoveRectangle()
         {
-            this.MoveRectangle = new Rectangle((int)this.X - 4, (int)this.Y - 4, 10, 10);
+            MoveRectangle = new Rectangle((int)X - 4, (int)Y - 4, 10, 10);
         }
 
         public void Draw(Graphics graphics)
         {
-            if (this.IsSelected)
-                graphics.DrawRectangle(Pens.Red, this.MoveRectangle);
+            if (IsSelected)
+                graphics.DrawRectangle(Pens.Red, MoveRectangle);
 
-            if (this.IsHovering)
+            if (IsHovering)
             {
-                graphics.DrawRectangle(Pens.Red, this.MoveRectangle);
-                this.DrawControlPoint(graphics, Pens.Red, Brushes.Red);
+                graphics.DrawRectangle(Pens.Red, MoveRectangle);
+                DrawControlPoint(graphics, Pens.Red, Brushes.Red);
             }
             else
             {
-                this.DrawControlPoint(graphics, Pens.Black, Brushes.Black);
+                DrawControlPoint(graphics, Pens.Black, Brushes.Black);
             }
 
-            if (this.IsMoving)
+            if (IsMoving)
             {
-                graphics.DrawRectangle(Pens.LightBlue, this.MoveRectangle);
+                graphics.DrawRectangle(Pens.LightBlue, MoveRectangle);
 
-                this.DrawControlPoint(graphics, Pens.LightBlue, Brushes.Gray);
+                DrawControlPoint(graphics, Pens.LightBlue, Brushes.Gray);
             }
         }
 
         private void DrawControlPoint(Graphics graphics, Pen pen, Brush brush)
         {
-            graphics.DrawRectangle(pen, (float)this.X, (float)this.Y, 2, 2);
-            graphics.FillRectangle(brush, (float)this.X, (float)this.Y, 2, 2);
-            graphics.DrawString(String.Format("[{0}]", this.Number), new Font("Arial", 8), brush, new PointF((float)this.X + 2, (float)this.Y + 2));
+            graphics.DrawRectangle(pen, (float)X, (float)Y, 2, 2);
+            graphics.FillRectangle(brush, (float)X, (float)Y, 2, 2);
+            graphics.DrawString(String.Format("[{0}]", Number), new Font("Arial", 8), brush, new PointF((float)X + 2, (float)Y + 2));
         }
 
         internal bool IsMouseHover(MouseEventArgs e)
         {
-            return this.MoveRectangle.Contains(e.Location);
+            return MoveRectangle.Contains(e.Location);
         }
 
         public void SetNewPosition(Point newLocation)
         {
-            this.X = newLocation.X;
-            this.Y = newLocation.Y;
+            X = newLocation.X;
+            Y = newLocation.Y;
 
-            this.CreateMoveRectangle();
+            CreateMoveRectangle();
 
-            this.OnPropertyChanged("X");
+            OnPropertyChanged("X");
         }
 
         public override string ToString()
         {
-            return String.Format("{0}. ControlPoint (X={1}, Y={2})", new object[] { this.Number, this.X, this.Y });
+            return String.Format("{0}. ControlPoint (X={1}, Y={2})", new object[] { Number, X, Y });
         }
     }
 }

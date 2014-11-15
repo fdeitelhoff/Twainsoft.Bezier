@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Main", "1. Main", "{4C6C9357-8E81-4E79-9312-C38FBFCD396A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.Bezier", "Twainsoft.Bezier\Twainsoft.Bezier.csproj", "{A5440957-68D8-43F6-AD72-2CF4ABF1C53C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. GUI", "2. GUI", "{C4F400C0-86E7-41EC-8441-623BAE5E8CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.Bezier.GUI", "Twainsoft.Bezier.GUI\Twainsoft.Bezier.GUI.csproj", "{05BB09CD-D072-4411-879B-667B70213412}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. BLL", "3. BLL", "{255116AE-CD35-4EC5-AA25-41E8AF15BFCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twainsoft.Bezier.BLL", "Twainsoft.Bezier.BLL\Twainsoft.Bezier.BLL.csproj", "{71E37B54-84D3-43E7-ADD5-58895FAB06B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +25,21 @@ Global
 		{A5440957-68D8-43F6-AD72-2CF4ABF1C53C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5440957-68D8-43F6-AD72-2CF4ABF1C53C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5440957-68D8-43F6-AD72-2CF4ABF1C53C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05BB09CD-D072-4411-879B-667B70213412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05BB09CD-D072-4411-879B-667B70213412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05BB09CD-D072-4411-879B-667B70213412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05BB09CD-D072-4411-879B-667B70213412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E37B54-84D3-43E7-ADD5-58895FAB06B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E37B54-84D3-43E7-ADD5-58895FAB06B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E37B54-84D3-43E7-ADD5-58895FAB06B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E37B54-84D3-43E7-ADD5-58895FAB06B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A5440957-68D8-43F6-AD72-2CF4ABF1C53C} = {4C6C9357-8E81-4E79-9312-C38FBFCD396A}
+		{05BB09CD-D072-4411-879B-667B70213412} = {C4F400C0-86E7-41EC-8441-623BAE5E8CC8}
+		{71E37B54-84D3-43E7-ADD5-58895FAB06B4} = {255116AE-CD35-4EC5-AA25-41E8AF15BFCD}
 	EndGlobalSection
 EndGlobal

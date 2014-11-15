@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
-namespace Twainsoft.FHSWF.Math.Bezier
+namespace Twainsoft.Bezier.BLL
 { 
     public class BezierCurve
     {
@@ -11,57 +14,57 @@ namespace Twainsoft.FHSWF.Math.Bezier
 
         public BezierCurve()
         {
-            this.ControlPoints = new List<ControlPoint>();
+            ControlPoints = new List<ControlPoint>();
 
-            this.TCount = 1000;
+            TCount = 1000;
         }
 
         public ControlPoint AddControlPoint(Point point)
         {
-            ControlPoint controlPoint = new ControlPoint(this.ControlPoints.Count + 1, point);
+            var controlPoint = new ControlPoint(ControlPoints.Count + 1, point);
 
-            this.ControlPoints.Add(controlPoint);
+            ControlPoints.Add(controlPoint);
 
-            this.CalculateCurve();
+            CalculateCurve();
 
             return controlPoint;
         }
 
         public void CalculateCurve()
         {
-            if (this.ControlPoints.Count == 0)
+            if (ControlPoints.Count == 0)
             {
-                this.BezierPoints = null;
+                BezierPoints = null;
                 return;
             }
 
-            int n = this.ControlPoints.Count - 1;
+            var n = ControlPoints.Count - 1;
 
-            ControlPoint[] controlPointArray = this.ControlPoints.ToArray();
+            var controlPointArray = ControlPoints.ToArray();
 
-            this.BezierPoints = new BezierPoint[this.TCount];
-            this.BezierPoints[0] = controlPointArray[0];
+            BezierPoints = new BezierPoint[TCount];
+            BezierPoints[0] = controlPointArray[0];
 
-            int calcs = 1;
-            for (decimal t = 1 / (decimal)this.TCount; t <= ((decimal)this.TCount - 1) / this.TCount; t += 1 / (decimal)this.TCount)
+            var calcs = 1;
+            for (var t = 1 / (decimal)TCount; t <= ((decimal)TCount - 1) / TCount; t += 1 / (decimal)TCount)
             {
-                BezierPoint result = new BezierPoint();
+                var result = new BezierPoint();
 
-                for (int i = 0; i <= n; i++)
+                for (var i = 0; i <= n; i++)
                 {
-                    result += (this.CalculateBinomial(n, i) * System.Math.Pow((double)t, i) * System.Math.Pow(1 - (double)t, n - i)) * controlPointArray[i];
+                    result += (CalculateBinomial(n, i) * Math.Pow((double)t, i) * Math.Pow(1 - (double)t, n - i)) * controlPointArray[i];
                 }
 
-                this.BezierPoints[calcs++] = result;
+                BezierPoints[calcs++] = result;
             }
 
-            this.BezierPoints[this.TCount - 1] = controlPointArray[n];
+            BezierPoints[TCount - 1] = controlPointArray[n];
         }
 
         private void DrawControlsPoints(Graphics graphics)
         {
             ControlPoint previousControlPoint = null;
-            foreach (var controlPoint in this.ControlPoints)
+            foreach (var controlPoint in ControlPoints)
             {
                 controlPoint.Draw(graphics);
 
@@ -87,16 +90,16 @@ namespace Twainsoft.FHSWF.Math.Bezier
 
         public void DrawCurve(Graphics graphics)
         {
-            this.DrawControlsPoints(graphics);
+            DrawControlsPoints(graphics);
 
-            if (this.BezierPoints != null)
+            if (BezierPoints != null)
             {
                 BezierPoint previousBezierPoint = null;
-                foreach (var bezierPoint in this.BezierPoints)
+                foreach (var bezierPoint in BezierPoints)
                 {
                     graphics.DrawRectangle(Pens.Black, (float)bezierPoint.X, (float)bezierPoint.Y, 1, 1);
 
-                    if (this.ConnectPoints)
+                    if (ConnectPoints)
                     {
                         if (previousBezierPoint != null)
                         {
@@ -112,13 +115,13 @@ namespace Twainsoft.FHSWF.Math.Bezier
 
         public void Clear()
         {
-            this.ControlPoints.Clear();
-            this.BezierPoints = null;
+            ControlPoints.Clear();
+            BezierPoints = null;
         }
 
         public ControlPoint CheckMousePosition(MouseEventArgs e)
         {
-            foreach (var controlPoint in this.ControlPoints)
+            foreach (var controlPoint in ControlPoints)
             {
                 if (controlPoint.IsMouseHover(e))
                 {
@@ -137,28 +140,28 @@ namespace Twainsoft.FHSWF.Math.Bezier
 
         public void RemoveControlPoint(ControlPoint controlPoint)
         {
-            this.ControlPoints.Remove(controlPoint);
+            ControlPoints.Remove(controlPoint);
 
-            int number = 1;
-            foreach (var item in this.ControlPoints)
+            var number = 1;
+            foreach (var item in ControlPoints)
             {
                 item.Number = number;
                 number++;
             }
 
-            this.CalculateCurve();
+            CalculateCurve();
         }
 
         public void SetTCount(int t)
         {
-            this.TCount = t;
+            TCount = t;
 
-            this.CalculateCurve();
+            CalculateCurve();
         }
 
         public void SetConnectPoints(bool connectPoints)
         {
-            this.ConnectPoints = connectPoints;
+            ConnectPoints = connectPoints;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Twainsoft.Bezier.GUI
 {
-    partial class FrmMain
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.ssMain = new System.Windows.Forms.StatusStrip();
             this.tsslMousePosition = new System.Windows.Forms.ToolStripStatusLabel();

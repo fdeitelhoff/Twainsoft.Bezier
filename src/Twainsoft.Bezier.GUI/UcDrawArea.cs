@@ -1,14 +1,11 @@
-﻿#region Namespaces
-
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-
-#endregion
+using Twainsoft.Bezier.BLL;
 
 namespace Twainsoft.Bezier.GUI
 {
-    public partial class UcDrawArea : UserControl
+    public sealed partial class UcDrawArea : UserControl
     {
         public BezierCurve BezierCurve { get; private set; }
         private ControlPoint SelectedControlPoint { get; set; }
@@ -25,13 +22,13 @@ namespace Twainsoft.Bezier.GUI
         {
             InitializeComponent();
 
-            this.BezierCurve = new BezierCurve();
-            this.ControlsPoints = new BindingList<ControlPoint>();
+            BezierCurve = new BezierCurve();
+            ControlsPoints = new BindingList<ControlPoint>();
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            this.BezierCurve.DrawCurve(e.Graphics);
+            BezierCurve.DrawCurve(e.Graphics);
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
@@ -40,26 +37,26 @@ namespace Twainsoft.Bezier.GUI
 
             if (e.Button == MouseButtons.Left)
             {
-                if (this.SelectedControlPoint == null)
+                if (SelectedControlPoint == null)
                 {
-                    ControlPoint controlPoint = this.BezierCurve.AddControlPoint(e.Location);
+                    var controlPoint = BezierCurve.AddControlPoint(e.Location);
 
-                    this.ControlsPoints.Add(controlPoint);
+                    ControlsPoints.Add(controlPoint);
 
-                    this.Invalidate();
+                    Invalidate();
                 }
             }
             else if (e.Button == MouseButtons.Right)
             {
-                ControlPoint controlPoint = this.BezierCurve.CheckMousePosition(e);
+                var controlPoint = BezierCurve.CheckMousePosition(e);
                 
                 if (controlPoint != null)
                 {
-                    this.BezierCurve.RemoveControlPoint(controlPoint);
+                    BezierCurve.RemoveControlPoint(controlPoint);
 
-                    this.ControlsPoints.Remove(controlPoint);
+                    ControlsPoints.Remove(controlPoint);
 
-                    this.Invalidate();
+                    Invalidate();
                 }
             }
         }
@@ -68,88 +65,88 @@ namespace Twainsoft.Bezier.GUI
         {
             base.OnMouseMove(e);
 
-            this.OnMouseMoved(e.Location);
+            OnMouseMoved(e.Location);
 
-            if (this.HoveredControlPoint != null)
-                this.HoveredControlPoint.IsHovering = false;
+            if (HoveredControlPoint != null)
+                HoveredControlPoint.IsHovering = false;
 
-            this.HoveredControlPoint = this.BezierCurve.CheckMousePosition(e);
+            HoveredControlPoint = BezierCurve.CheckMousePosition(e);
 
-            if (this.HoveredControlPoint != null)
-                this.HoveredControlPoint.IsHovering = true;
+            if (HoveredControlPoint != null)
+                HoveredControlPoint.IsHovering = true;
 
-            if (this.SelectedControlPoint != null && this.SelectedControlPoint.IsSelected)
+            if (SelectedControlPoint != null && SelectedControlPoint.IsSelected)
             {
-                this.SelectedControlPoint.SetNewPosition(e.Location);
-                this.SelectedControlPoint.IsMoving = true;
+                SelectedControlPoint.SetNewPosition(e.Location);
+                SelectedControlPoint.IsMoving = true;
             }
 
-            if (this.IsRealtimeCalculation)
-                this.BezierCurve.CalculateCurve();
+            if (IsRealtimeCalculation)
+                BezierCurve.CalculateCurve();
 
-            this.Invalidate();
+            Invalidate();
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
 
-            this.SelectedControlPoint = this.BezierCurve.CheckMousePosition(e);
+            SelectedControlPoint = BezierCurve.CheckMousePosition(e);
 
-            if (this.SelectedControlPoint != null)
+            if (SelectedControlPoint != null)
             {
-                this.SelectedControlPoint.IsSelected = true;
+                SelectedControlPoint.IsSelected = true;
             }
 
-            this.Invalidate();
+            Invalidate();
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
 
-            if (this.SelectedControlPoint != null)
+            if (SelectedControlPoint != null)
             {
-                this.SelectedControlPoint.IsSelected = false;
-                this.SelectedControlPoint.IsMoving = false;
-                this.SelectedControlPoint.IsHovering = false;
+                SelectedControlPoint.IsSelected = false;
+                SelectedControlPoint.IsMoving = false;
+                SelectedControlPoint.IsHovering = false;
 
-                if (!this.IsRealtimeCalculation)
-                    this.BezierCurve.CalculateCurve();
+                if (!IsRealtimeCalculation)
+                    BezierCurve.CalculateCurve();
 
-                this.Invalidate();
+                Invalidate();
             }
         }
 
         internal void Clear()
         {
-            this.BezierCurve.Clear();
-            this.ControlsPoints.Clear();
+            BezierCurve.Clear();
+            ControlsPoints.Clear();
 
-            this.Invalidate();
+            Invalidate();
         }
 
-        protected virtual void OnMouseMoved(Point location)
+        private void OnMouseMoved(Point location)
         {
-            if (this.MouseMoved != null)
-                this.MouseMoved(this, new MouseMovedEventArgs(location));
+            if (MouseMoved != null)
+                MouseMoved(this, new MouseMovedEventArgs(location));
         }
 
         internal void SetRealtimeCalculation(bool realtimeCalculation)
         {
-            this.IsRealtimeCalculation = realtimeCalculation;
+            IsRealtimeCalculation = realtimeCalculation;
         }
 
         internal void SetTCount(int t)
         {
-            this.BezierCurve.SetTCount(t);
+            BezierCurve.SetTCount(t);
 
-            this.Invalidate();
+            Invalidate();
         }
 
         internal void SetConnectPoints(bool connectPoints)
         {
-            this.BezierCurve.SetConnectPoints(connectPoints);
+            BezierCurve.SetConnectPoints(connectPoints);
         }
     }
 }

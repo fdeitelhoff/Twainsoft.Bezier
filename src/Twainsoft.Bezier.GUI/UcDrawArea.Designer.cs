@@ -1,6 +1,6 @@
 ﻿namespace Twainsoft.Bezier.GUI
 {
-    partial class UcDrawArea
+    sealed partial class UcDrawArea
     {
         /// <summary>
         /// Required designer variable.

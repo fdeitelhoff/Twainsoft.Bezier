@@ -1,20 +1,15 @@
-﻿#region Namespaces
+﻿using System;
+using System.Drawing;
 
-using System;
-
-#endregion
-
-namespace Twainsoft.FHSWF.Math.Bezier
+namespace Twainsoft.Bezier.BLL
 {
     public class MouseMovedEventArgs : EventArgs
     {
         public Point Location { get; set; }
 
-        public MouseMovedEventArgs() : base() { }
-
-        public MouseMovedEventArgs(Point point) : this()
+        public MouseMovedEventArgs(Point point)
         {
-            this.Location = point;
+            Location = point;
         }
     }
 }
