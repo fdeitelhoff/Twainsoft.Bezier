@@ -33,18 +33,17 @@
             this.ssMain = new System.Windows.Forms.StatusStrip();
             this.tsslMousePosition = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslControlPointCount = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ucDrawArea = new Twainsoft.Bezier.GUI.UcDrawArea();
             this.tsMain = new System.Windows.Forms.ToolStrip();
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
             this.tsbRealtimeCalculation = new System.Windows.Forms.ToolStripButton();
+            this.tsbConnectPoints = new System.Windows.Forms.ToolStripButton();
             this.tslTCount = new System.Windows.Forms.ToolStripLabel();
             this.tstbCount = new System.Windows.Forms.ToolStripTextBox();
+            this.ucDrawArea = new Twainsoft.Bezier.GUI.UcDrawArea();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.lbControlPoints = new System.Windows.Forms.ListBox();
-            this.tsbConnectPoints = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer.ContentPanel.SuspendLayout();
-            this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
             this.ssMain.SuspendLayout();
             this.tsMain.SuspendLayout();
@@ -64,6 +63,7 @@
             // toolStripContainer.ContentPanel
             // 
             this.toolStripContainer.ContentPanel.AutoScroll = true;
+            this.toolStripContainer.ContentPanel.Controls.Add(this.tsMain);
             this.toolStripContainer.ContentPanel.Controls.Add(this.ucDrawArea);
             this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(495, 360);
             this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -74,10 +74,6 @@
             this.toolStripContainer.Size = new System.Drawing.Size(495, 407);
             this.toolStripContainer.TabIndex = 2;
             this.toolStripContainer.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer.TopToolStripPanel
-            // 
-            this.toolStripContainer.TopToolStripPanel.Controls.Add(this.tsMain);
             // 
             // ssMain
             // 
@@ -101,27 +97,18 @@
             this.tsslControlPointCount.Name = "tsslControlPointCount";
             this.tsslControlPointCount.Size = new System.Drawing.Size(0, 17);
             // 
-            // ucDrawArea
-            // 
-            this.ucDrawArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDrawArea.HoveredControlPoint = null;
-            this.ucDrawArea.Location = new System.Drawing.Point(0, 0);
-            this.ucDrawArea.Name = "ucDrawArea";
-            this.ucDrawArea.Size = new System.Drawing.Size(495, 360);
-            this.ucDrawArea.TabIndex = 0;
-            // 
             // tsMain
             // 
-            this.tsMain.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbClear,
             this.tsbRealtimeCalculation,
             this.tsbConnectPoints,
             this.tslTCount,
             this.tstbCount});
-            this.tsMain.Location = new System.Drawing.Point(3, 0);
+            this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(466, 25);
+            this.tsMain.Size = new System.Drawing.Size(495, 25);
             this.tsMain.TabIndex = 0;
             // 
             // tsbClear
@@ -130,8 +117,9 @@
             this.tsbClear.Image = ((System.Drawing.Image)(resources.GetObject("tsbClear.Image")));
             this.tsbClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClear.Name = "tsbClear";
-            this.tsbClear.Size = new System.Drawing.Size(80, 22);
-            this.tsbClear.Text = "Alles löschen";
+            this.tsbClear.Size = new System.Drawing.Size(74, 22);
+            this.tsbClear.Text = "Clear Points";
+            this.tsbClear.ToolTipText = "Clear Points";
             this.tsbClear.Click += new System.EventHandler(this.tsbClear_Click);
             // 
             // tsbRealtimeCalculation
@@ -140,15 +128,27 @@
             this.tsbRealtimeCalculation.Image = ((System.Drawing.Image)(resources.GetObject("tsbRealtimeCalculation.Image")));
             this.tsbRealtimeCalculation.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRealtimeCalculation.Name = "tsbRealtimeCalculation";
-            this.tsbRealtimeCalculation.Size = new System.Drawing.Size(116, 22);
-            this.tsbRealtimeCalculation.Text = "Echtzeitberechnung";
+            this.tsbRealtimeCalculation.Size = new System.Drawing.Size(120, 22);
+            this.tsbRealtimeCalculation.Text = "Realtime Calculation";
+            this.tsbRealtimeCalculation.ToolTipText = "Realtime Calculation";
             this.tsbRealtimeCalculation.Click += new System.EventHandler(this.tsbRealtimeCalculation_Click);
+            // 
+            // tsbConnectPoints
+            // 
+            this.tsbConnectPoints.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbConnectPoints.Image = ((System.Drawing.Image)(resources.GetObject("tsbConnectPoints.Image")));
+            this.tsbConnectPoints.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbConnectPoints.Name = "tsbConnectPoints";
+            this.tsbConnectPoints.Size = new System.Drawing.Size(92, 22);
+            this.tsbConnectPoints.Text = "Connect Points";
+            this.tsbConnectPoints.ToolTipText = "Connect Points";
+            this.tsbConnectPoints.Click += new System.EventHandler(this.tsbConnectPoints_Click);
             // 
             // tslTCount
             // 
             this.tslTCount.Name = "tslTCount";
-            this.tslTCount.Size = new System.Drawing.Size(71, 22);
-            this.tslTCount.Text = "Anzahl für t:";
+            this.tslTCount.Size = new System.Drawing.Size(102, 22);
+            this.tslTCount.Text = "Control Variable t:";
             // 
             // tstbCount
             // 
@@ -156,8 +156,17 @@
             this.tstbCount.Size = new System.Drawing.Size(50, 25);
             this.tstbCount.Text = "1000";
             this.tstbCount.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tstbCount.ToolTipText = "Die maximale Größe der Laufvariable t für c(t).";
+            this.tstbCount.ToolTipText = "Maximum Count Of The Control Variable t For c(t).";
             this.tstbCount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tstbCount_KeyDown);
+            // 
+            // ucDrawArea
+            // 
+            this.ucDrawArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDrawArea.HoveredControlPoint = null;
+            this.ucDrawArea.Location = new System.Drawing.Point(0, 0);
+            this.ucDrawArea.Name = "ucDrawArea";
+            this.ucDrawArea.Size = new System.Drawing.Size(495, 360);
+            this.ucDrawArea.TabIndex = 0;
             // 
             // splitContainer
             // 
@@ -185,30 +194,20 @@
             this.lbControlPoints.Size = new System.Drawing.Size(162, 407);
             this.lbControlPoints.TabIndex = 0;
             // 
-            // tsbConnectPoints
-            // 
-            this.tsbConnectPoints.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbConnectPoints.Image = ((System.Drawing.Image)(resources.GetObject("tsbConnectPoints.Image")));
-            this.tsbConnectPoints.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbConnectPoints.Name = "tsbConnectPoints";
-            this.tsbConnectPoints.Size = new System.Drawing.Size(104, 22);
-            this.tsbConnectPoints.Text = "Punkte verbinden";
-            this.tsbConnectPoints.Click += new System.EventHandler(this.tsbConnectPoints_Click);
-            // 
-            // FrmMain
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 407);
             this.Controls.Add(this.splitContainer);
             this.DoubleBuffered = true;
-            this.Name = "FrmMain";
-            this.Text = "Bezierkurve (Fabian Deitelhoff)";
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Test Application For Bézier Curves";
             this.toolStripContainer.BottomToolStripPanel.ResumeLayout(false);
             this.toolStripContainer.BottomToolStripPanel.PerformLayout();
             this.toolStripContainer.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer.ContentPanel.PerformLayout();
             this.toolStripContainer.ResumeLayout(false);
             this.toolStripContainer.PerformLayout();
             this.ssMain.ResumeLayout(false);

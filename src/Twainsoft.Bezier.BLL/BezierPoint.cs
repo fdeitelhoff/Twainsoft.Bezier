@@ -15,13 +15,13 @@ namespace Twainsoft.Bezier.BLL
             Y = 0;
         }
 
-        public BezierPoint(double x, double y) : this()
+        private BezierPoint(double x, double y) : this()
         {
             X = x;
             Y = y;
         }
 
-        public BezierPoint(Point point) : this(point.X, point.Y) { }
+        protected BezierPoint(Point point) : this(point.X, point.Y) { }
 
         public static BezierPoint operator *(double value, BezierPoint bezierPoint)
         {
@@ -40,13 +40,15 @@ namespace Twainsoft.Bezier.BLL
 
         public override string ToString()
         {
-            return String.Format("BezierPoint (X={0}, Y={1})", new object[] { X, Y });
+            return string.Format("BezierPoint (X={0}, Y={1})", new object[] { X, Y });
         }
 
-        protected virtual void OnPropertyChanged(string name)
+        protected void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

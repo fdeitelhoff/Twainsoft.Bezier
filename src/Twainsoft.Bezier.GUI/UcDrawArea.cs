@@ -7,11 +7,11 @@ namespace Twainsoft.Bezier.GUI
 {
     public sealed partial class UcDrawArea : UserControl
     {
-        public BezierCurve BezierCurve { get; private set; }
+        private BezierCurve BezierCurve { get; set; }
         private ControlPoint SelectedControlPoint { get; set; }
         public ControlPoint HoveredControlPoint { get; set; }
 
-        public bool IsRealtimeCalculation { get; private set; }
+        private bool IsRealtimeCalculation { get; set; }
 
         public BindingList<ControlPoint> ControlsPoints { get; private set; }
 
@@ -68,7 +68,9 @@ namespace Twainsoft.Bezier.GUI
             OnMouseMoved(e.Location);
 
             if (HoveredControlPoint != null)
+            {
                 HoveredControlPoint.IsHovering = false;
+            }
 
             HoveredControlPoint = BezierCurve.CheckMousePosition(e);
 
@@ -82,7 +84,9 @@ namespace Twainsoft.Bezier.GUI
             }
 
             if (IsRealtimeCalculation)
+            {
                 BezierCurve.CalculateCurve();
+            }
 
             Invalidate();
         }
@@ -129,7 +133,9 @@ namespace Twainsoft.Bezier.GUI
         private void OnMouseMoved(Point location)
         {
             if (MouseMoved != null)
+            {
                 MouseMoved(this, new MouseMovedEventArgs(location));
+            }
         }
 
         internal void SetRealtimeCalculation(bool realtimeCalculation)

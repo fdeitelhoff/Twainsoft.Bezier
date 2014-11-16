@@ -9,14 +9,14 @@ namespace Twainsoft.Bezier.BLL
     {
         private List<ControlPoint> ControlPoints { get; set; }
         private BezierPoint[] BezierPoints { get; set; }
-        public int TCount { get; private set; }
-        public bool ConnectPoints { get; set; }
+        private int Count { get; set; }
+        private bool ConnectPoints { get; set; }
 
         public BezierCurve()
         {
             ControlPoints = new List<ControlPoint>();
 
-            TCount = 1000;
+            Count = 1000;
         }
 
         public ControlPoint AddControlPoint(Point point)
@@ -42,11 +42,11 @@ namespace Twainsoft.Bezier.BLL
 
             var controlPointArray = ControlPoints.ToArray();
 
-            BezierPoints = new BezierPoint[TCount];
+            BezierPoints = new BezierPoint[Count];
             BezierPoints[0] = controlPointArray[0];
 
             var calcs = 1;
-            for (var t = 1 / (decimal)TCount; t <= ((decimal)TCount - 1) / TCount; t += 1 / (decimal)TCount)
+            for (var t = 1 / (decimal)Count; t <= ((decimal)Count - 1) / Count; t += 1 / (decimal)Count)
             {
                 var result = new BezierPoint();
 
@@ -58,7 +58,7 @@ namespace Twainsoft.Bezier.BLL
                 BezierPoints[calcs++] = result;
             }
 
-            BezierPoints[TCount - 1] = controlPointArray[n];
+            BezierPoints[Count - 1] = controlPointArray[n];
         }
 
         private void DrawControlsPoints(Graphics graphics)
@@ -129,10 +129,8 @@ namespace Twainsoft.Bezier.BLL
                     
                     return controlPoint;
                 }
-                else
-                {
-                    Cursor.Current = Cursors.Default;
-                }
+
+                Cursor.Current = Cursors.Default;
             }
 
             return null;
@@ -154,7 +152,7 @@ namespace Twainsoft.Bezier.BLL
 
         public void SetTCount(int t)
         {
-            TCount = t;
+            Count = t;
 
             CalculateCurve();
         }

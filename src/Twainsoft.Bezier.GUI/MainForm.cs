@@ -16,9 +16,9 @@ namespace Twainsoft.Bezier.GUI
         
         private void ucDrawArea_MouseMoved(object sender, MouseMovedEventArgs e)
         {
-            tsslMousePosition.Text = String.Format("Aktuelle Position: X={0}, Y={1}", e.Location.X, e.Location.Y);
+            tsslMousePosition.Text = String.Format("Current Position: X={0}, Y={1}", e.Location.X, e.Location.Y);
 
-            tsslControlPointCount.Text = String.Format("Anzahl Kontrollpunkte: {0}", ucDrawArea.ControlsPoints.Count);
+            tsslControlPointCount.Text = String.Format("Control Point Count: {0}", ucDrawArea.ControlsPoints.Count);
         }
 
         private void tsbClear_Click(object sender, EventArgs e)
@@ -41,10 +41,15 @@ namespace Twainsoft.Bezier.GUI
                 Int32.TryParse(tstbCount.Text, out result);
 
                 if (result != 0)
+                {
                     ucDrawArea.SetTCount(result);
+                }
                 else
-                    MessageBox.Show(this, "Der Wert für die Laufvariable t für c(t) muss größer 0 sein!", "Falsche Eingabe",
+                {
+                    MessageBox.Show(this, "The Value For The Control Variable t For c(t) Must Be Greater Than 0!",
+                        "Wrong Input",
                         MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
             }
         }
 

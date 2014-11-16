@@ -7,7 +7,7 @@ namespace Twainsoft.Bezier.BLL
     public class ControlPoint : BezierPoint
     {
         public int Number { get; set; }
-        public Rectangle MoveRectangle { get; private set; }
+        private Rectangle MoveRectangle { get; set; }
         public bool IsSelected { get; set; }
         public bool IsMoving { get; set; }
         public bool IsHovering { get; set; }
@@ -51,7 +51,7 @@ namespace Twainsoft.Bezier.BLL
         {
             graphics.DrawRectangle(pen, (float)X, (float)Y, 2, 2);
             graphics.FillRectangle(brush, (float)X, (float)Y, 2, 2);
-            graphics.DrawString(String.Format("[{0}]", Number), new Font("Arial", 8), brush, new PointF((float)X + 2, (float)Y + 2));
+            graphics.DrawString(string.Format("[{0}]", Number), new Font("Arial", 8), brush, new PointF((float)X + 2, (float)Y + 2));
         }
 
         internal bool IsMouseHover(MouseEventArgs e)
@@ -71,7 +71,7 @@ namespace Twainsoft.Bezier.BLL
 
         public override string ToString()
         {
-            return String.Format("{0}. ControlPoint (X={1}, Y={2})", new object[] { Number, X, Y });
+            return string.Format("{0}. ControlPoint (X={1}, Y={2})", new object[] { Number, X, Y });
         }
     }
 }
