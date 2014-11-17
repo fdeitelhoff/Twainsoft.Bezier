@@ -80,12 +80,12 @@ namespace Twainsoft.Bezier.BLL
 
         private int CalculateBinomial(int n, int k)
         {
-            return (factorial(n) / (factorial(k) * factorial(n - k)));
+            return (Factorial(n) / (Factorial(k) * Factorial(n - k)));
         }
 
-        private int factorial(int x)
+        private int Factorial(int x)
         {
-            return (x <= 1) ? 1 : x * factorial(x - 1);
+            return (x <= 1) ? 1 : x * Factorial(x - 1);
         }
 
         public void DrawCurve(Graphics graphics)

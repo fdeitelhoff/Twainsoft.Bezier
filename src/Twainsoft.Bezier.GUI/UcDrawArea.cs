@@ -154,5 +154,14 @@ namespace Twainsoft.Bezier.GUI
         {
             BezierCurve.SetConnectPoints(connectPoints);
         }
+
+        public void RemoveControlPoint(ControlPoint controlPoint)
+        {
+            BezierCurve.RemoveControlPoint(controlPoint);
+
+            ControlsPoints.Remove(controlPoint);
+
+            Invalidate();
+        }
     }
 }

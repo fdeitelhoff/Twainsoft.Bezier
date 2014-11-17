@@ -61,5 +61,18 @@ namespace Twainsoft.Bezier.GUI
 
             ucDrawArea.Invalidate();
         }
+
+        private void lbControlPoints_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                var controlPoint = lbControlPoints.SelectedItem as ControlPoint;
+
+                if (controlPoint != null)
+                {
+                    ucDrawArea.RemoveControlPoint(controlPoint);
+                }
+            }
+        }
     }
 }

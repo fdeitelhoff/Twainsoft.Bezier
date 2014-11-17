@@ -65,13 +65,13 @@
             this.toolStripContainer.ContentPanel.AutoScroll = true;
             this.toolStripContainer.ContentPanel.Controls.Add(this.tsMain);
             this.toolStripContainer.ContentPanel.Controls.Add(this.ucDrawArea);
-            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(495, 360);
+            this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(622, 455);
             this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer.LeftToolStripPanelVisible = false;
             this.toolStripContainer.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer.Name = "toolStripContainer";
             this.toolStripContainer.RightToolStripPanelVisible = false;
-            this.toolStripContainer.Size = new System.Drawing.Size(495, 407);
+            this.toolStripContainer.Size = new System.Drawing.Size(622, 502);
             this.toolStripContainer.TabIndex = 2;
             this.toolStripContainer.Text = "toolStripContainer1";
             // 
@@ -83,7 +83,7 @@
             this.tsslControlPointCount});
             this.ssMain.Location = new System.Drawing.Point(0, 0);
             this.ssMain.Name = "ssMain";
-            this.ssMain.Size = new System.Drawing.Size(495, 22);
+            this.ssMain.Size = new System.Drawing.Size(622, 22);
             this.ssMain.SizingGrip = false;
             this.ssMain.TabIndex = 0;
             // 
@@ -108,7 +108,7 @@
             this.tstbCount});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(495, 25);
+            this.tsMain.Size = new System.Drawing.Size(622, 25);
             this.tsMain.TabIndex = 0;
             // 
             // tsbClear
@@ -165,7 +165,7 @@
             this.ucDrawArea.HoveredControlPoint = null;
             this.ucDrawArea.Location = new System.Drawing.Point(0, 0);
             this.ucDrawArea.Name = "ucDrawArea";
-            this.ucDrawArea.Size = new System.Drawing.Size(495, 360);
+            this.ucDrawArea.Size = new System.Drawing.Size(622, 455);
             this.ucDrawArea.TabIndex = 0;
             // 
             // splitContainer
@@ -181,8 +181,8 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.toolStripContainer);
-            this.splitContainer.Size = new System.Drawing.Size(661, 407);
-            this.splitContainer.SplitterDistance = 162;
+            this.splitContainer.Size = new System.Drawing.Size(828, 502);
+            this.splitContainer.SplitterDistance = 202;
             this.splitContainer.TabIndex = 3;
             // 
             // lbControlPoints
@@ -191,14 +191,15 @@
             this.lbControlPoints.FormattingEnabled = true;
             this.lbControlPoints.Location = new System.Drawing.Point(0, 0);
             this.lbControlPoints.Name = "lbControlPoints";
-            this.lbControlPoints.Size = new System.Drawing.Size(162, 407);
+            this.lbControlPoints.Size = new System.Drawing.Size(202, 502);
             this.lbControlPoints.TabIndex = 0;
+            this.lbControlPoints.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lbControlPoints_KeyUp);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 407);
+            this.ClientSize = new System.Drawing.Size(828, 502);
             this.Controls.Add(this.splitContainer);
             this.DoubleBuffered = true;
             this.Name = "MainForm";
