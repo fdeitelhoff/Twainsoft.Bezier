@@ -1,3 +1,7 @@
+#### 0.0.4-beta - November 20 2014
+* Change: Added FAKE for the build process.
+* First initial release.
+
 #### 0.0.3-beta - November 18 2014
 * Change: Initial updates for paket and FAKE integration (not working right now).
 
